@@ -1,26 +1,30 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
   html {
-    color-scheme: dark;
+    font-family: "Nunito Sans", sans-serif;
   }
   body {
-    color: white;
-    background: black;
+    @apply bg-slate-100 text-very-dark-blue dark:bg-very-dark-blue-dm dark:text-white;
+  }
+}
+@layer components {
+  nav {
+    @apply w-full bg-white dark:bg-very-dark-blue-dm shadow-md;
+  }
+  .nav-container {
+    @apply w-full lg:max-w-6xl mx-auto;
+    @apply flex items-center justify-between px-4 xl:px-0 py-4;
+  }
+  .nav-container .slang {
+    @apply text-very-dark-blue dark:text-white font-bold text-base lg:text-xl;
+  }
+  .nav-container button {
+    @apply flex items-center space-x-2 capitalize;
   }
 }
