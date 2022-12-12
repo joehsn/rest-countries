@@ -15,7 +15,7 @@
 }
 @layer components {
   nav {
-    @apply w-full bg-white dark:bg-very-dark-blue-dm shadow-md;
+    @apply w-full bg-white dark:bg-dark-blue-dm shadow-md;
   }
   .nav-container {
     @apply w-full lg:max-w-6xl mx-auto;

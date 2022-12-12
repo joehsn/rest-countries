@@ -23,45 +23,36 @@ export default function Home() {
   const [data, setData] = useState<Country[]>([]);
 
   useEffect(() => {
-    const fetchCountry = async () => {
-      const res = await fetch(`https://restcountries.com/v3.1/all`);
-      const resData = await res.json();
-      setData(resData);
-    };
-    fetchCountry();
-  }, []);
+    if (filter === "all") {
+      fetch("https://restcountries.com/v3.1/all")
+        .then((res) => res.json())
+        .then((data) => {
+          setData(data);
+        });
+    } else {
+      fetch(`https://restcountries.com/v3.1/region/${filter}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setData(data);
+        });
+    }
+  }, [filter]);
 
-  // useEffect(() => {
-  //   if (filter === "all") {
-  //     fetch("https://restcountries.com/v3.1/all")
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         setData(data);
-  //       });
-  //   } else {
-  //     fetch(`https://restcountries.com/v3.1/region/${filter}`)
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         setData(data);
-  //       });
-  //   }
-  // }, [filter]);
-
-  // useEffect(() => {
-  //   if (search === "") {
-  //     fetch("https://restcountries.com/v3.1/all")
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         setData(data);
-  //       });
-  //   } else {
-  //     fetch(`https://restcountries.com/v3.1/name/${search}`)
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         setData(data);
-  //       });
-  //   }
-  // }, [search]);
+  useEffect(() => {
+    if (search === "") {
+      fetch("https://restcountries.com/v3.1/all")
+        .then((res) => res.json())
+        .then((data) => {
+          setData(data);
+        });
+    } else {
+      fetch(`https://restcountries.com/v3.1/name/${search}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setData(data);
+        });
+    }
+  }, [search]);
 
   return (
     <>
@@ -71,13 +62,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
-      <main>
-        <div className="search-bar w-full lg:max-w-6xl mx-auto py-6 px-4 lg:px-0 flex flex-col lg:flex-row items-center justify-between">
-          <Search />
-          <Filter />
+      <main className="w-full lg:max-w-6xl mx-auto px-4 xl:px-0">
+        <div className="search-bar py-6 flex flex-col lg:flex-row items-center justify-between gap-y-4">
+          <Search setSearch={setSearch} />
+          <Filter setFilter={setFilter} />
         </div>
-        <div className="countries w-full lg:max-w-6xl mx-auto py-6 px-4 lg:px-0">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="countries pb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-rows-1 gap-y-4 md:gap-8 xl:gap-12">
             {data.map((country, index: number) => (
               <Card key={index} country={country} />
             ))}

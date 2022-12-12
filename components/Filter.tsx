@@ -1,21 +1,29 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
 
-const people = [
-  { name: "Wade Cooper" },
-  { name: "Arlene Mccoy" },
-  { name: "Devon Webb" },
-  { name: "Tom Cook" },
-  { name: "Tanya Fox" },
-  { name: "Hellen Schmidt" },
+const filter = [
+  { name: "all" },
+  { name: "africa" },
+  { name: "americas" },
+  { name: "asia" },
+  { name: "europe" },
+  { name: "oceania" },
 ];
 
-export default function Example() {
-  const [selected, setSelected] = useState(people[0]);
+export default function FilterComponent({
+  setFilter,
+}: {
+  setFilter: (filter: string) => void;
+}) {
+  const [selected, setSelected] = useState(filter[0]);
+
+  useEffect(() => {
+    setFilter(selected.name);
+  }, [setFilter, selected]);
 
   return (
-    <div className="w-72">
+    <div className="w-full lg:w-48">
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative">
           <Listbox.Button className="relative w-full cursor-pointer rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
@@ -36,24 +44,24 @@ export default function Example() {
             leaveTo="opacity-0"
           >
             <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-              {people.map((person, personIdx) => (
+              {filter.map((region, regionIdx) => (
                 <Listbox.Option
-                  key={personIdx}
+                  key={regionIdx}
                   className={({ active }) =>
                     `relative cursor-default select-none py-2 pl-10 pr-4 ${
                       active ? "bg-amber-100 text-amber-900" : "text-gray-900"
                     }`
                   }
-                  value={person}
+                  value={region}
                 >
                   {({ selected }) => (
                     <>
                       <span
-                        className={`block truncate ${
+                        className={`block truncate capitalize ${
                           selected ? "font-medium" : "font-normal"
                         }`}
                       >
-                        {person.name}
+                        {region.name}
                       </span>
                       {selected ? (
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
