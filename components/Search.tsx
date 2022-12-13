@@ -1,7 +1,6 @@
-import { Fragment, useEffect, useState } from "react";
-import { Combobox, Transition } from "@headlessui/react";
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
-import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Combobox } from "@headlessui/react";
+import MagnifyingGlassIcon from "@heroicons/react/20/solid/MagnifyingGlassIcon";
 
 interface Country {
   name: {
