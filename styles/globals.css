@@ -15,14 +15,14 @@
 }
 @layer components {
   nav {
-    @apply w-full bg-white dark:bg-dark-blue-dm shadow-md;
+    @apply w-full bg-white shadow-md dark:bg-dark-blue-dm;
   }
   .nav-container {
-    @apply w-full lg:max-w-6xl mx-auto;
-    @apply flex items-center justify-between px-4 xl:px-0 py-4;
+    @apply w-full mx-auto lg:max-w-6xl;
+    @apply flex items-center justify-between px-4 py-4 xl:px-0;
   }
   .nav-container .slang {
-    @apply text-very-dark-blue dark:text-white font-bold text-base lg:text-xl;
+    @apply text-base font-bold text-very-dark-blue dark:text-white lg:text-xl;
   }
   .nav-container button {
     @apply flex items-center space-x-2 capitalize;
