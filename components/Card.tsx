@@ -4,10 +4,10 @@ import React from "react";
 
 interface Country {
   name: {
-    common: string;
+    official: string;
   };
   flags: {
-    png: string;
+    svg: string;
   };
   population: number;
   region: string;
@@ -17,31 +17,38 @@ interface Country {
 export default function Card({ country }: { country: Country }) {
   return (
     <Link
-      href={`/${country.name?.common}`}
-      className="rounded shadow-md bg-white dark:bg-dark-blue-dm overflow-hidden"
+      href={`/${country.name?.official.toLowerCase()}`}
+      className="h-full rounded shadow-lg bg-white dark:bg-dark-blue-dm overflow-hidden"
     >
       <Image
-        className="aspect-[3/2] w-full"
-        src={country.flags?.png}
-        alt={`${country.name?.common}'s Flag`}
+        className="aspect-video object-cover w-full shadow-md"
+        src={country.flags?.svg}
+        alt={`${country.name?.official}'s Flag`}
         width={320}
         height={160}
         priority
       />
       <div className="p-4">
-        <h3 className="mb-4 text-xl font-extrabold">{country.name?.common}</h3>
-        <p className="card-text font-semibold">
-          Population:{" "}
-          <span className="font-light">
-            {country.population.toString().replace(/(.)(?=(\d{3})+$)/g, "$1,")}
-          </span>
-        </p>
-        <p className="card-text font-semibold">
-          Region: <span className="font-light">{country.region}</span>
-        </p>
-        <p className="card-text font-semibold">
-          Capital: <span className="font-light">{country.capital}</span>
-        </p>
+        <h3 className="mb-4 font-extrabold">{country.name?.official}</h3>
+        <div className="space-y-1">
+          <p className="text-sm font-semibold">
+            Population:{" "}
+            <span className="font-light">
+              {country.population
+                .toString()
+                .replace(/(.)(?=(\d{3})+$)/g, "$1,")}
+            </span>
+          </p>
+          <p className="text-sm font-semibold">
+            Region: <span className="font-light">{country.region}</span>
+          </p>
+          <p className="text-sm font-semibold">
+            Capital:{" "}
+            <span className="font-light">
+              {country.capital ? country.capital : "N/A"}
+            </span>
+          </p>
+        </div>
       </div>
     </Link>
   );
