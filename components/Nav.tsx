@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 export default function Nav() {
   const [mounted, setMounted] = useState(false);
@@ -17,7 +18,9 @@ export default function Nav() {
   return (
     <nav>
       <div className="nav-container">
-        <div className="slang">Where in the world?</div>
+        <Link href="/" className="slang">
+          Where in the world?
+        </Link>
         <button
           className="text-very-dark-blue dark:text-white"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
