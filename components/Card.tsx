@@ -21,7 +21,7 @@ export default function Card({ country }: { country: Country }) {
       className="h-full rounded shadow-lg bg-white dark:bg-dark-blue-dm overflow-hidden"
     >
       <Image
-        className="aspect-video object-cover w-full shadow-md"
+        className="aspect-[3/2] object-cover w-full shadow-md"
         src={country.flags?.svg}
         alt={`${country.name?.official}'s Flag`}
         width={320}

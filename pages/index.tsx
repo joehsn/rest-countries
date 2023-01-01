@@ -61,7 +61,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <div className="flex flex-col items-center justify-between py-6 search-bar lg:flex-row gap-y-4">
+        <div className="flex flex-col items-center justify-between py-6 lg:py-12 search-bar lg:flex-row gap-y-4">
           <Search setSearch={setSearch} />
           <Filter setFilter={setFilter} />
         </div>
